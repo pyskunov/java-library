@@ -3,9 +3,7 @@ package com.example.demo.books.controllers;
 import com.example.demo.books.models.Book;
 import com.example.demo.books.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +20,11 @@ public class BookController {
     @GetMapping
     public List<Book> index() {
         return this.bookService.books();
+    }
+
+    @PostMapping
+    public void store(@RequestBody Book book) {
+        bookService.save(book);
     }
 
 }

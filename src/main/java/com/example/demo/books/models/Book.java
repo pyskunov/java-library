@@ -1,6 +1,20 @@
 package com.example.demo.books.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Book {
+    @Id
+    @SequenceGenerator(
+            name = "book_sequence",
+            sequenceName = "book_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "book_sequence"
+    )
     private Long id;
     private String name;
     private Integer pages;
@@ -9,6 +23,15 @@ public class Book {
         this.id = id;
         this.name = name;
         this.pages = pages;
+    }
+
+    public Book(String name, Integer pages) {
+        this.name = name;
+        this.pages = pages;
+    }
+
+    public Book() {
+
     }
 
     public Long getId() {
